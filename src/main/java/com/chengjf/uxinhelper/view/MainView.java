@@ -2,9 +2,11 @@ package com.chengjf.uxinhelper.view;
 
 import com.vaadin.flow.component.html.NativeButton;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
+import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 
 @Route("main")
+@PageTitle("main")
 public class MainView extends VerticalLayout {
 
     public MainView() {

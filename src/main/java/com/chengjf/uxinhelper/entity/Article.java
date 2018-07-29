@@ -14,7 +14,7 @@ public class Article {
     private Long id;
     private String article;
 
-    private Article() {
+    public Article() {
     }
 
     @PersistenceConstructor
