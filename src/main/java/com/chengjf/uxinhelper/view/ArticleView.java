@@ -34,10 +34,10 @@ public class ArticleView extends VerticalLayout {
         articleTextFiled.setRequired(true);
 
 
-        binder.forField(idTextFiled).withConverter(new StringToLongConverter("Must enter a number"))
+        binder.forField(idTextFiled).asRequired("请输入数字").withConverter(new StringToLongConverter("Must enter a number"))
                 .bind(Article::getArticleId, Article::setArticleId);
 
-        binder.forField(articleTextFiled).bind(Article::getArticle, Article::setArticle);
+        binder.forField(articleTextFiled).asRequired("请输入内容").bind(Article::getArticle, Article::setArticle);
 
         Button button = new Button("click");
 
