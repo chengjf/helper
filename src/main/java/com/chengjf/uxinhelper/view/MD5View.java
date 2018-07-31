@@ -6,12 +6,9 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
-import com.vaadin.flow.theme.Theme;
-import com.vaadin.flow.theme.lumo.Lumo;
 
 @Route("md5")
 @PageTitle("md5")
-@Theme(value = Lumo.class, variant = Lumo.LIGHT)
 public class MD5View extends VerticalLayout {
 
     public MD5View() {

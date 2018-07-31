@@ -20,6 +20,7 @@ public class NaviView extends Div implements RouterLayout {
         //        listBox.add(new RouterLink("Home", MainView.class));
         listBox.add(new RouterLink("MD5", MD5View.class));
         //        listBox.add(new RouterLink("article", ArticleView.class));
+        listBox.add(new RouterLink("Json", JsonView.class));
         add(title, listBox);
 
 
