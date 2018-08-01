@@ -30,7 +30,7 @@
         <mybatis-spring-boot.version>1.3.0</mybatis-spring-boot.version>
         <google-api-version>v2-rev56-1.23.0</google-api-version>
         <vertx.version>3.5.0</vertx.version>
-        <vaading.version>10.0.1</vaading.version>
+        <vaading.version>3.1.0</vaading.version>
     </properties>
 
 

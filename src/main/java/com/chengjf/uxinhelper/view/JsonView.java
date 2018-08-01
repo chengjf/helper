@@ -1,28 +1,36 @@
 package com.chengjf.uxinhelper.view;
 
 import com.chengjf.uxinhelper.utils.JsonUtil;
-import com.vaadin.flow.component.button.Button;
-import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
-import com.vaadin.flow.component.orderedlayout.VerticalLayout;
-import com.vaadin.flow.component.textfield.TextArea;
-import com.vaadin.flow.router.PageTitle;
-import com.vaadin.flow.router.Route;
+import com.vaadin.navigator.View;
+import com.vaadin.spring.annotation.SpringView;
+import com.vaadin.ui.Button;
+import com.vaadin.ui.HorizontalLayout;
+import com.vaadin.ui.TextArea;
+import com.vaadin.ui.VerticalLayout;
 
 import java.io.IOException;
 
 
-@Route("json")
-@PageTitle("json")
-public class JsonView extends VerticalLayout {
+@SpringView(name = "json")
+public class JsonView extends VerticalLayout implements View {
 
     public JsonView() {
+
         Button beautyBtn = new Button("格式化");
 
         TextArea sourceTextArea = new TextArea("输入");
-        sourceTextArea.setRequired(true);
+        //        sourceTextArea.setRequired(true);
+        sourceTextArea.setWordWrap(true);
+        sourceTextArea.setHeight("500px");
         TextArea resultTextArea = new TextArea("输出");
         resultTextArea.setWidth("100%");
         resultTextArea.setReadOnly(true);
+        resultTextArea.setHeight("100%");
+        resultTextArea.setWordWrap(false);
+        resultTextArea.setResponsive(true);
+        resultTextArea.setRows(Integer.MAX_VALUE);
+        resultTextArea.setSizeFull();
+        resultTextArea.setHeight("500px");
 
         HorizontalLayout horizontalLayout = new HorizontalLayout(sourceTextArea, resultTextArea);
         horizontalLayout.setWidth("100%");
@@ -30,9 +38,13 @@ public class JsonView extends VerticalLayout {
             String value = sourceTextArea.getValue();
             String result = getResult(value);
             resultTextArea.setValue(result);
+//            resultTextArea.setSizeFull();
+//            resultTextArea.setHeightUndefined();
+//            resultTextArea.setResponsive(true);
         });
 
-        add(beautyBtn, horizontalLayout);
+        //        add(beautyBtn, horizontalLayout);
+        addComponents(beautyBtn, horizontalLayout);
     }
 
 
