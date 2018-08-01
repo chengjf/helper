@@ -52,7 +52,7 @@
 
     <Loggers>
         <Root level="debug">
-            <!--<AppenderRef ref="STDOUT"/>-->
+            <AppenderRef ref="STDOUT"/>
             <!--<AppenderRef ref="asyncFile" />-->
             <!--<AppenderRef ref="ERROR_FILE" />-->
         </Root>

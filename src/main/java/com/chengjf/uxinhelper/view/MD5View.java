@@ -13,7 +13,7 @@ import lombok.extern.slf4j.Slf4j;
 
 
 @Slf4j
-@SpringView(name = "md5")
+@SpringView(name = "/md5")
 @SpringUI
 public class MD5View extends VerticalLayout implements View {
 

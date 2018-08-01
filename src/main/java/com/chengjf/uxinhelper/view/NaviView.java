@@ -4,13 +4,13 @@ package com.chengjf.uxinhelper.view;
 import com.vaadin.navigator.Navigator;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.spring.annotation.SpringUI;
-import com.vaadin.spring.annotation.SpringView;
 import com.vaadin.spring.annotation.SpringViewDisplay;
 import com.vaadin.ui.*;
 import com.vaadin.ui.MenuBar.MenuItem;
 import com.vaadin.ui.themes.ValoTheme;
 
 @SpringUI(path = "/")
+@SpringViewDisplay
 public class NaviView extends UI {
 
     @Override
