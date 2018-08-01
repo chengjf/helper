@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="debug" strict="true" name="XMLConfigTest"
+               monitorInterval="60">
+
+    <Properties>
+        <Property name="LOG_HOME">/data/applog/helper</Property>
+        <Property name="LOG_LEVEL">INFO</Property>
+        <Property name="STD_LOG_LEVEL">DEBUG</Property>
+        <Property name="accessHistory">365</Property>
+        <Property name="infoHistory">240</Property>
+        <Property name="errorHistory">10</Property>
+        <Property name="monitorHistory">10</Property>
+    </Properties>
+    <Filter type="ThresholdFilter" level="trace"/>
+
+    <Appenders>
+        <Appender name="STDOUT" type="Console" target="SYSTEM_OUT">
+            <ThresholdFilter level="${STD_LOG_LEVEL}"
+                             onMatch="ACCEPT" onMismatch="DENY"/>
+            <Layout type="PatternLayout"
+                    pattern="%d{yyyy-MM-dd HH:mm:ss:SSS} %X{request_id} %thread %-5level %c{1} - %m%n"/>
+        </Appender>
+        <Appender name="FILE" type="RollingRandomAccessFile"
+                  fileName="${LOG_HOME}/helper_info.log"
+                  filePattern="${LOG_HOME}/$${date:yyyy_MM_dd}/helper_info.log.%d{yyyy-MM-dd-HH}.gz">
+            <ThresholdFilter level="${LOG_LEVEL}"
+                             onMatch="ACCEPT" onMismatch="DENY"/>
+            <Layout type="PatternLayout"
+                    pattern="%d{yyyy-MM-dd HH:mm:ss:SSS} %X{request_id} %thread %-5level %c{1} - %m%n"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy/>
+            </Policies>
+            <DefaultRolloverStrategy max="${infoHistory}"/>
+        </Appender>
+        <Appender name="asyncFile" type="Async">
+            <AppenderRef ref="FILE"/>
+            <includeLocation>true</includeLocation>
+        </Appender>
+        <Appender name="ERROR_FILE" type="RollingRandomAccessFile"
+                  fileName="${LOG_HOME}/helper_error.log"
+                  filePattern="${LOG_HOME}/$${date:yyyy_MM_dd}/helper_error.log.%d{yyyy-MM-dd}">
+            <ThresholdFilter level="ERROR" onMatch="ACCEPT"
+                             onMismatch="DENY"/>
+            <Layout type="PatternLayout"
+                    pattern="%d{yyyy-MM-dd HH:mm:ss:SSS} %X{request_id} %thread %-5level %c{1} - %m%n"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy/>
+            </Policies>
+            <DefaultRolloverStrategy max="${errorHistory}"/>
+        </Appender>
+    </Appenders>
+
+    <Loggers>
+        <Root level="debug">
+            <!--<AppenderRef ref="STDOUT"/>-->
+            <!--<AppenderRef ref="asyncFile" />-->
+            <!--<AppenderRef ref="ERROR_FILE" />-->
+        </Root>
+        <Logger name="org.apache.zookeeper" level="error"/>
+        <Logger name="com.baidu.disconf" level="error"/>
+        <Logger name="org.apache.http" level="warn"/>
+        <Logger name="org.mybatis.spring" level="debug"/>
+        <Logger name="org.apache.ibatis" level="debug"/>
+        <Logger name="com.uxin.zb" level="debug"/>
+        <logger name="org.springframework.scheduling" level="info"/>
+        <Logger name="org.springframework" level="INFO"/>
+        <Logger name="com.weibo.api.motan" level="error"/>
+
+        <!-- monitor logger -->
+        <Logger name="com.chengjf.uxinhelper" level="debug"/>
+
+    </Loggers>
+
+</Configuration>

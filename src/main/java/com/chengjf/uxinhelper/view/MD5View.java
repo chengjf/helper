@@ -8,8 +8,10 @@ import com.vaadin.data.validator.IntegerRangeValidator;
 import com.vaadin.navigator.View;
 import com.vaadin.spring.annotation.SpringView;
 import com.vaadin.ui.*;
+import lombok.extern.slf4j.Slf4j;
 
 
+@Slf4j
 @SpringView(name = "md5")
 public class MD5View extends VerticalLayout implements View {
 
@@ -48,6 +50,7 @@ public class MD5View extends VerticalLayout implements View {
         Button button = new Button("加密", e -> {
 
             if (binder.writeBeanIfValid(md5Data)) {
+                log.info("MD5 加密：{}", md5Data);
                 String value = md5Data.getPassword();
                 int count = md5Data.getCount();
                 //            Notification.show("Hello Spring+Vaadin user!" + value);
