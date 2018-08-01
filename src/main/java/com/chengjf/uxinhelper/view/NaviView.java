@@ -1,41 +1,55 @@
 package com.chengjf.uxinhelper.view;
 
 
-import com.vaadin.annotations.Title;
-import com.vaadin.navigator.View;
-import com.vaadin.navigator.ViewDisplay;
+import com.vaadin.navigator.Navigator;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.spring.annotation.SpringUI;
 import com.vaadin.spring.annotation.SpringViewDisplay;
 import com.vaadin.ui.*;
+import com.vaadin.ui.MenuBar.MenuItem;
 import com.vaadin.ui.themes.ValoTheme;
 
-@Title("Helper")
-@SpringUI(path = "/")
-@SpringViewDisplay()
-public class NaviView extends UI implements ViewDisplay {
-
-
-    private Panel springViewDisplay;
+@SpringUI
+@SpringViewDisplay
+public class NaviView extends UI {
 
     @Override
     protected void init(VaadinRequest request) {
-        final VerticalLayout root = new VerticalLayout();
-        root.setSizeFull();
-        setContent(root);
 
-        final CssLayout navigationBar = new CssLayout();
-        navigationBar.addStyleName(ValoTheme.LAYOUT_COMPONENT_GROUP);
-        navigationBar.addComponent(createNavigationButton("md5",
-                "md5"));
-        navigationBar.addComponent(createNavigationButton("json",
-                "json"));
-        root.addComponent(navigationBar);
+        Panel panel = new Panel();
+        panel.setSizeFull();
 
-        springViewDisplay = new Panel();
-        springViewDisplay.setSizeFull();
-        root.addComponent(springViewDisplay);
-        root.setExpandRatio(springViewDisplay, 1.0f);
+        Navigator navigator = new Navigator(this, panel);
+        navigator.addView("md5", MD5View.class);
+        navigator.addView("json", JsonView.class);
+        navigator.addView("", DefaultView.class);
+        navigator.navigateTo("");
+
+        VerticalLayout verticalLayout = new VerticalLayout();
+        verticalLayout.setSizeFull();
+        verticalLayout.addComponent(createMenu());
+        verticalLayout.addComponent(panel);
+        verticalLayout.setExpandRatio(panel, 1);
+        setContent(verticalLayout);
+
+    }
+
+    private Component createMenu() {
+        MenuBar menuBar = new MenuBar();
+
+        MenuItem administration = menuBar.addItem("Tools", null);
+
+        administration.addItem("md5", (MenuBar.Command) selectedItem -> getNavigator().navigateTo("md5"));
+
+        administration.addItem("json", (MenuBar.Command) selectedItem -> getNavigator().navigateTo("json"));
+
+        MenuBar.MenuItem booking = menuBar.addItem("Test", null);
+
+        booking.addItem("test", (MenuBar.Command) selectedItem -> getNavigator().navigateTo(""));
+
+        booking.addItem("test", (MenuBar.Command) selectedItem -> getNavigator().navigateTo(""));
+
+        return menuBar;
     }
 
     private Button createNavigationButton(String caption,
@@ -47,9 +61,5 @@ public class NaviView extends UI implements ViewDisplay {
         return button;
     }
 
-    @Override
-    public void showView(View view) {
-        springViewDisplay.setContent((Component) view);
-    }
 
 }
