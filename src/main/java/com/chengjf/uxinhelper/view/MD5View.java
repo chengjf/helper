@@ -6,6 +6,7 @@ import com.vaadin.data.Binder;
 import com.vaadin.data.converter.StringToIntegerConverter;
 import com.vaadin.data.validator.IntegerRangeValidator;
 import com.vaadin.navigator.View;
+import com.vaadin.spring.annotation.SpringUI;
 import com.vaadin.spring.annotation.SpringView;
 import com.vaadin.ui.*;
 import lombok.extern.slf4j.Slf4j;
@@ -13,6 +14,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @SpringView(name = "md5")
+@SpringUI
 public class MD5View extends VerticalLayout implements View {
 
     private Binder<MD5Data> binder = new Binder<>(MD5Data.class);

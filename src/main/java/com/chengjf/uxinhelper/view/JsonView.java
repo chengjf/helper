@@ -2,6 +2,7 @@ package com.chengjf.uxinhelper.view;
 
 import com.chengjf.uxinhelper.utils.JsonUtil;
 import com.vaadin.navigator.View;
+import com.vaadin.spring.annotation.SpringUI;
 import com.vaadin.spring.annotation.SpringView;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.HorizontalLayout;
@@ -12,6 +13,7 @@ import java.io.IOException;
 
 
 @SpringView(name = "json")
+@SpringUI
 public class JsonView extends VerticalLayout implements View {
 
     public JsonView() {
