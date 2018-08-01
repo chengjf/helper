@@ -10,7 +10,7 @@ import com.vaadin.ui.*;
 import com.vaadin.ui.MenuBar.MenuItem;
 import com.vaadin.ui.themes.ValoTheme;
 
-@SpringUI
+@SpringUI(path = "/")
 public class NaviView extends UI {
 
     @Override
