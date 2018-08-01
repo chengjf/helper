@@ -11,8 +11,8 @@ import com.vaadin.ui.*;
 import com.vaadin.ui.themes.ValoTheme;
 
 @Title("Helper")
-@SpringUI
-@SpringViewDisplay
+@SpringUI(path = "/")
+@SpringViewDisplay()
 public class NaviView extends UI implements ViewDisplay {
 
 
