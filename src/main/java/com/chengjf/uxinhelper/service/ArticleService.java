@@ -17,7 +17,7 @@ public class ArticleService {
         return articleRepository.findAll();
     }
 
-    public Article addArticle(Article article){
+    public Article addArticle(Article article) {
         return articleRepository.saveAndFlush(article);
     }
 

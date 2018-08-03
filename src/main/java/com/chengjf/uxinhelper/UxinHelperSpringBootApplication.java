@@ -1,28 +1,32 @@
 package com.chengjf.uxinhelper;
 
-import lombok.extern.log4j.Log4j2;
+import com.chengjf.uxinhelper.service.YoutubeService;
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
+import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
 @Slf4j
 public class UxinHelperSpringBootApplication extends SpringBootServletInitializer {
+
+    public static void main(String[] args) {
+        log.info("start server.");
+        SpringApplication.run(UxinHelperSpringBootApplication.class, args);
+        log.info("start server completed.");
+    }
 
     @Override
     protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
         return builder.sources(UxinHelperSpringBootApplication.class);
     }
 
-
-    public static void main(String[] args) {
-        log.info("start server.");
-        SpringApplication.run(UxinHelperSpringBootApplication.class, args);
-        log.info("start server completed.");
+    @Bean
+    public CommandLineRunner test(YoutubeService youtubeService) {
+        return (x) -> log.info("{}", youtubeService);
     }
 
     //    @Bean

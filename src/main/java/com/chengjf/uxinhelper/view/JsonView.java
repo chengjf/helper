@@ -40,9 +40,9 @@ public class JsonView extends VerticalLayout implements View {
             String value = sourceTextArea.getValue();
             String result = getResult(value);
             resultTextArea.setValue(result);
-//            resultTextArea.setSizeFull();
-//            resultTextArea.setHeightUndefined();
-//            resultTextArea.setResponsive(true);
+            //            resultTextArea.setSizeFull();
+            //            resultTextArea.setHeightUndefined();
+            //            resultTextArea.setResponsive(true);
         });
 
         //        add(beautyBtn, horizontalLayout);

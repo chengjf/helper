@@ -1,6 +1,7 @@
 package com.chengjf.uxinhelper.view;
 
 
+import com.chengjf.uxinhelper.service.YoutubeService;
 import com.vaadin.navigator.Navigator;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.spring.annotation.SpringUI;
@@ -8,10 +9,15 @@ import com.vaadin.spring.annotation.SpringViewDisplay;
 import com.vaadin.ui.*;
 import com.vaadin.ui.MenuBar.MenuItem;
 import com.vaadin.ui.themes.ValoTheme;
+import org.springframework.beans.factory.annotation.Autowired;
 
 @SpringUI(path = "/")
 @SpringViewDisplay
 public class NaviView extends UI {
+
+
+    @Autowired
+    private YoutubeService youtubeService;
 
     @Override
     protected void init(VaadinRequest request) {
@@ -19,10 +25,11 @@ public class NaviView extends UI {
         Panel panel = new Panel();
         panel.setSizeFull();
 
+        YoutubeView youtubeView = new YoutubeView(this.youtubeService);
         Navigator navigator = new Navigator(this, panel);
         navigator.addView("md5", MD5View.class);
         navigator.addView("json", JsonView.class);
-        navigator.addView("youtube", YoutubeView.class);
+        navigator.addView("youtube", youtubeView);
         navigator.addView("", DefaultView.class);
         navigator.navigateTo("");
 
@@ -48,15 +55,6 @@ public class NaviView extends UI {
         booking.addItem("test", (MenuBar.Command) selectedItem -> getNavigator().navigateTo(""));
 
         return menuBar;
-    }
-
-    private Button createNavigationButton(String caption,
-                                          final String viewName) {
-        Button button = new Button(caption);
-        button.addStyleName(ValoTheme.BUTTON_SMALL);
-        button.addClickListener(
-                event -> getUI().getNavigator().navigateTo(viewName));
-        return button;
     }
 
 

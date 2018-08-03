@@ -23,8 +23,8 @@ public class YoutubeView extends VerticalLayout implements View {
     @Autowired
     private YoutubeService youtubeService;
 
-    public YoutubeView() {
-
+    public YoutubeView(YoutubeService youtubeService) {
+        this.youtubeService = youtubeService;
         Button beautyBtn = new Button("extract");
 
         TextArea sourceTextArea = new TextArea("输入");
@@ -53,7 +53,6 @@ public class YoutubeView extends VerticalLayout implements View {
         //        add(beautyBtn, horizontalLayout);
         addComponents(beautyBtn, horizontalLayout);
     }
-
 
     public String getResult(String str) {
         try {
