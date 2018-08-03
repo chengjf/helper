@@ -30,11 +30,11 @@ public class MD5View extends VerticalLayout implements View {
         textField.setWidth("500px");
         Label pwdLabel = new Label();
 
-        TextField numberField = new TextField("加密次数：");
+        TextField numberField = new TextField("MD5加密次数：");
         numberField.setValue("1");
         Label numberLabel = new Label();
 
-        TextField result = new TextField("结果：");
+        TextField result = new TextField("MD5结果：");
         result.setEnabled(false);
         result.setMaxLength(10000);
         result.setReadOnly(true);

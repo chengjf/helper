@@ -1,6 +1,7 @@
 package com.chengjf.uxinhelper.utils;
 
 import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.util.DefaultIndenter;
 import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -39,5 +40,14 @@ public class JsonUtil {
         String str = "{a:1,\"attributes\":[{\"nm\":\"ACCOUNT\",\"lv\":[{\"v\":{\"Id\":null,\"State\":null},\"vt\":\"java.util.Map\",\"cn\":1}],\"vt\":\"java.util.Map\",\"status\":\"SUCCESS\",\"lmd\":13585},{\"nm\":\"PROFILE\",\"lv\":[{\"v\":{\"Party\":null,\"Ads\":null},\"vt\":\"java.util.Map\",\"cn\":2}],\"vt\":\"java.util.Map\",\"status\":\"SUCCESS\",\"lmd\":41962}]}\n";
         String s = JsonUtil.beautifyJson(str);
         System.out.println(s);
+    }
+
+    public static String toJsonStr(Object object) throws JsonProcessingException {
+        try {
+            String s = objectMapper.writer(printer).writeValueAsString(object);
+            return s;
+        } catch (IOException e) {
+            throw e;
+        }
     }
 }
