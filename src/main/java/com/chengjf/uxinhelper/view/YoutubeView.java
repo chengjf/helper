@@ -10,12 +10,14 @@ import com.vaadin.ui.Button;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.TextArea;
 import com.vaadin.ui.VerticalLayout;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.IOException;
 
 @SpringView(name = "/youtube")
 @SpringUI
+@Slf4j
 public class YoutubeView extends VerticalLayout implements View {
 
     @Autowired
@@ -42,7 +44,9 @@ public class YoutubeView extends VerticalLayout implements View {
         horizontalLayout.setWidth("100%");
         beautyBtn.addClickListener(e -> {
             String value = sourceTextArea.getValue();
+            log.info("input value:{}", value);
             String result = getResult(value);
+            log.info("result value:{}", result);
             resultTextArea.setValue(result);
         });
 
@@ -54,6 +58,7 @@ public class YoutubeView extends VerticalLayout implements View {
     public String getResult(String str) {
         try {
             ScrapeInfo scrapeInfo = youtubeService.parseWeb(str);
+            log.info("parse result:{}", scrapeInfo);
             return JsonUtil.toJsonStr(scrapeInfo);
         } catch (IOException e) {
             return e.getMessage();
