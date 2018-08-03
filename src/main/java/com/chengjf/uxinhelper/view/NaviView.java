@@ -22,6 +22,7 @@ public class NaviView extends UI {
         Navigator navigator = new Navigator(this, panel);
         navigator.addView("md5", MD5View.class);
         navigator.addView("json", JsonView.class);
+        navigator.addView("youtube", YoutubeView.class);
         navigator.addView("", DefaultView.class);
         navigator.navigateTo("");
 
@@ -38,15 +39,12 @@ public class NaviView extends UI {
         MenuBar menuBar = new MenuBar();
 
         MenuItem administration = menuBar.addItem("Tools", null);
-
         administration.addItem("md5", (MenuBar.Command) selectedItem -> getNavigator().navigateTo("md5"));
-
         administration.addItem("json", (MenuBar.Command) selectedItem -> getNavigator().navigateTo("json"));
+        administration.addItem("youtube", (MenuBar.Command) selectedItem -> getNavigator().navigateTo("youtube"));
 
         MenuBar.MenuItem booking = menuBar.addItem("Test", null);
-
         booking.addItem("test", (MenuBar.Command) selectedItem -> getNavigator().navigateTo(""));
-
         booking.addItem("test", (MenuBar.Command) selectedItem -> getNavigator().navigateTo(""));
 
         return menuBar;
