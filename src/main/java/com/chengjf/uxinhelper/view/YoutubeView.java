@@ -57,12 +57,15 @@ public class YoutubeView extends VerticalLayout implements View {
 
     public String getResult(String str) {
         try {
+            log.info("youtubeService:{} url:{}", youtubeService, str);
             ScrapeInfo scrapeInfo = youtubeService.parseWeb(str);
             log.info("parse result:{}", scrapeInfo);
             return JsonUtil.toJsonStr(scrapeInfo);
         } catch (IOException e) {
+            log.error("parse io error:{}", str, e);
             return e.getMessage();
         } catch (Exception e) {
+            log.error("parse error:{}", str, e);
             return e.getMessage();
         }
     }
