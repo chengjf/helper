@@ -7,7 +7,7 @@ import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.VerticalLayout;
 
-@SpringView(name = "/default")
+@SpringView(name = "")
 @SpringUI
 public class DefaultView extends VerticalLayout implements View {
 

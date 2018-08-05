@@ -15,7 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.IOException;
 
-@SpringView(name = "/youtube")
+@SpringView(name = "youtube")
 @SpringUI
 @Slf4j
 public class YoutubeView extends VerticalLayout implements View {
@@ -54,7 +54,7 @@ public class YoutubeView extends VerticalLayout implements View {
         addComponents(beautyBtn, horizontalLayout);
     }
 
-    public String getResult(String str) {
+    private String getResult(String str) {
         try {
             log.info("youtubeService:{} url:{}", youtubeService, str);
             ScrapeInfo scrapeInfo = youtubeService.parseWeb(str);

@@ -12,7 +12,7 @@ import com.vaadin.ui.VerticalLayout;
 import java.io.IOException;
 
 
-@SpringView(name = "/json")
+@SpringView(name = "json")
 @SpringUI
 public class JsonView extends VerticalLayout implements View {
 

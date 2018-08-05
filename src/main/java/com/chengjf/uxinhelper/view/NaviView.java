@@ -6,18 +6,23 @@ import com.vaadin.navigator.Navigator;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.spring.annotation.SpringUI;
 import com.vaadin.spring.annotation.SpringViewDisplay;
+import com.vaadin.spring.navigator.SpringViewProvider;
 import com.vaadin.ui.*;
 import com.vaadin.ui.MenuBar.MenuItem;
-import com.vaadin.ui.themes.ValoTheme;
 import org.springframework.beans.factory.annotation.Autowired;
 
-@SpringUI(path = "/")
+@SpringUI
 @SpringViewDisplay
 public class NaviView extends UI {
 
-
     @Autowired
     private YoutubeService youtubeService;
+
+    @Autowired
+    private SpringViewProvider springViewProvider;
+
+    @Autowired
+    private SpringViewProvider springErrorViewProvider;
 
     @Override
     protected void init(VaadinRequest request) {
@@ -25,13 +30,13 @@ public class NaviView extends UI {
         Panel panel = new Panel();
         panel.setSizeFull();
 
-        YoutubeView youtubeView = new YoutubeView(this.youtubeService);
+        springErrorViewProvider.setAccessDeniedViewClass(ErrorView.class);
+
         Navigator navigator = new Navigator(this, panel);
-        navigator.addView("md5", MD5View.class);
-        navigator.addView("json", JsonView.class);
-        navigator.addView("youtube", youtubeView);
-        navigator.addView("", DefaultView.class);
-        navigator.navigateTo("");
+        navigator.addProvider(this.springViewProvider);
+        navigator.setErrorProvider(springErrorViewProvider);
+        navigator.setErrorView(ErrorView.class);
+        setNavigator(navigator);
 
         VerticalLayout verticalLayout = new VerticalLayout();
         verticalLayout.setSizeFull();
