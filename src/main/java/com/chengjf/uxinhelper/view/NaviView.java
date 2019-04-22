@@ -55,9 +55,9 @@ public class NaviView extends UI {
         administration.addItem("json", (MenuBar.Command) selectedItem -> getNavigator().navigateTo("json"));
         administration.addItem("youtube", (MenuBar.Command) selectedItem -> getNavigator().navigateTo("youtube"));
 
-        MenuBar.MenuItem booking = menuBar.addItem("Test", null);
-        booking.addItem("test", (MenuBar.Command) selectedItem -> getNavigator().navigateTo(""));
-        booking.addItem("test", (MenuBar.Command) selectedItem -> getNavigator().navigateTo(""));
+//        MenuBar.MenuItem booking = menuBar.addItem("Test", null);
+//        booking.addItem("test", (MenuBar.Command) selectedItem -> getNavigator().navigateTo(""));
+//        booking.addItem("test", (MenuBar.Command) selectedItem -> getNavigator().navigateTo(""));
 
         return menuBar;
     }
